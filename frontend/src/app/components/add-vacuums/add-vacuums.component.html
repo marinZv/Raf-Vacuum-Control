@@ -1,0 +1,19 @@
+<div class="container">
+  <br><br>
+
+  <div *ngIf="canAdd">
+    <div class="row justify-content-center">
+      <div class="col-md-4 align-items-center">
+        <input type="text" class="form-control" placeholder="Enter name for a new vacuum" [(ngModel)]="addVacuumName">
+      </div>
+    </div>
+    <div class="row justify-content-center add-vacuum">
+      <div class="col-md-4 d-grid align-items-center">
+        <button type="button" class="btn btn-success btn-block rounded-pill" (click)="addVacuum()">Add vacuum</button>
+      </div>
+    </div>
+  </div>
+
+  <app-popup></app-popup>
+
+</div>

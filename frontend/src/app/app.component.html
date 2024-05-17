@@ -1,0 +1,40 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a [routerLink]="'/users'" class="nav-link active" aria-current="page">Users</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="'/create-user'" class="nav-link active" aria-current="page">Add User</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="'/search-vacuums'" class="nav-link active" aria-current="page">Search Vacuum</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="'/add-vacuums'" class="nav-link active" aria-current="page">Add Vacuum</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="'/vacuum-errors'" class="nav-link active" aria-current="page">Vacuum Errors</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <div [ngStyle]="{'display':displayLogin}">
+            <button type="button" class="btn btn-outline-light rounded-pill" (click)="goToLogin()">Login</button>
+          </div>
+          <div [ngStyle]="{'display':displayLogout}">
+            <button type="button" class="btn btn-outline-light rounded-pill" (click)="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<router-outlet></router-outlet>

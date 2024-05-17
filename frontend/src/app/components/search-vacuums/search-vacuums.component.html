@@ -1,0 +1,106 @@
+<div class="container">
+  <br><br>
+
+<!--  <div class="row justify-content-center">-->
+<!--    <div class="col-md-2 d-flex align-items-center">-->
+<!--      <input type="text" class="form-control" placeholder="Name" [(ngModel)]="vacuumName">-->
+<!--    </div>-->
+<!--    <div class="col-md-2 d-flex align-items-center">-->
+<!--      <input type="date" class="form-control" placeholder="From" id="date-from">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <input type="date" class="form-control" placeholder="To" id="date-to">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <div>-->
+<!--        <input class="form-check-input" type="checkbox" value="STOPPED" id="stopped-check">-->
+<!--        <label class="form-check-label">Stopped</label>-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <input class="form-check-input" type="checkbox" value="RUNNING" id="running-check">-->
+<!--        <label class="form-check-label">Running</label>-->
+<!--      </div>-->
+<!--      <div class="col-md-2 d-flex align-items-center text-center">-->
+<!--        <button type="button" class="btn btn-success btn-block rounded-pill" (click)="searchVacuums()">Search</button>-->
+<!--      </div>-->
+<!--    </div>-->
+
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <label for="date-from" class="form-label">Date From</label>
+      <input type="date" class="form-control" id="date-from">
+    </div>
+    <div class="col-md-3">
+      <label for="date-to" class="form-label">Date To</label>
+      <input type="date" class="form-control" id="date-to">
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-2">
+    <div class="col-md-3">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="STOPPED" id="stopped-check">
+        <label class="form-check-label" for="stopped-check">Stopped</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="RUNNING" id="running-check">
+        <label class="form-check-label" for="running-check">Running</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-2">
+    <div class="col-md-3">
+      <button type="button" class="btn btn-success btn-block rounded-pill" (click)="searchVacuums()">Search</button>
+    </div>
+  </div>
+
+    <br>
+
+
+    <div class="container">
+      <br><br>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Created Date</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let vacuum of vacuums">
+              <td>{{ vacuum.name }}</td>
+              <td>{{ vacuum.status }}</td>
+              <td>{{ vacuum.createdDate | date: 'medium' }}</td>
+              <td>
+                <div *ngIf="isStopped(vacuum.status); else running">
+                  <img *ngIf="canStart" class="vacuum-action" src="./assets/start.svg" alt="start" width="30" height="30" (click)="startVacuum(vacuum.id)">
+                  <img *ngIf="canRemove" class="vacuum-action" src="./assets/remove.svg" alt="remove" width="30" height="30" (click)="removeVacuum(vacuum.id)">
+                  <img *ngIf="canDischarge" class="vacuum-action" src="./assets/discharge.svg" alt="discharge" width="30" height="30" (click)="dischargeVacuum(vacuum.id)">
+                  <img class="vacuum-action ms-auto" src="./assets/date.svg" alt="schedule" width="30" height="30" (click)="openSchedule(vacuum.id, vacuum.name)">
+                </div>
+                <ng-template #running>
+                  <div class="d-flex align-items-center">
+                    <img *ngIf="canStop" class="vacuum-action" src="./assets/stop.svg" alt="stop" width="30" height="30" (click)="stopVacuum(vacuum.id)">
+                    <img class="vacuum-action" src="./assets/date.svg" alt="schedule" width="30" height="30" (click)="openSchedule(vacuum.id, vacuum.name)">
+                  </div>
+                </ng-template>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <app-popup></app-popup>
+
+    </div>
+
+  <app-popup></app-popup>
+
+</div>

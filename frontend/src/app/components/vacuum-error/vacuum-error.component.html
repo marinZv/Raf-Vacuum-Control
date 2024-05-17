@@ -1,0 +1,45 @@
+<div class="container">
+  <br><br>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Vacuum Errors</h3>
+    </div>
+  </div>
+
+  <br>
+
+  <div *ngIf="vacuumErrors.length == 0; else table" class="row">
+    <div class="col-md-12 text-center">
+      <h6>You have no errors</h6>
+    </div>
+  </div>
+
+  <ng-template #table>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Vacuum</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+            <th scope="col">Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vacuumError of vacuumErrors">
+            <td>{{vacuumError.vacuum.name}}</td>
+            <td>{{vacuumError.dateError | date: 'medium'}}</td>
+            <td>{{vacuumError.action}}</td>
+            <td>{{vacuumError.message}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </ng-template>
+
+
+  <app-popup></app-popup>
+</div>
